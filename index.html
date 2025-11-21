@@ -28,13 +28,22 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
+        h1 {
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .form {
+            margin-bottom: 30px;
+        }
+
         input {
             padding: 12px 20px;
             font-size: 16px;
             border: 2px solid #ddd;
             border-radius: 5px;
-            width: 300px;
-            margin-bottom: 20px;
+            width: 280px;
+            margin: 5px;
             outline: none;
             transition: border-color 0.3s;
         }
@@ -52,6 +61,7 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
+            margin: 5px;
         }
 
         button:hover {
@@ -61,13 +71,69 @@
         button:active {
             transform: scale(0.98);
         }
+
+        #contactList {
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .contact-item {
+            background: #f9f9f9;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .contact-info {
+            text-align: left;
+            flex: 1;
+        }
+
+        .contact-name {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .contact-number {
+            color: #666;
+        }
+
+        .contact-actions button {
+            padding: 8px 15px;
+            font-size: 14px;
+            margin-left: 5px;
+        }
+
+        .edit-btn {
+            background-color: #2196F3;
+        }
+
+        .edit-btn:hover {
+            background-color: #0b7dda;
+        }
+
+        .delete-btn {
+            background-color: #f44336;
+        }
+
+        .delete-btn:hover {
+            background-color: #da190b;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <input type="text" id="textInput" placeholder="Enter text here...">
-        <br>
-        <button id="submitBtn">Submit</button>
+        <h1>Contact Book</h1>
+        <div class="form">
+            <input type="text" id="nameInput" placeholder="Enter name...">
+            <input type="text" id="numberInput" placeholder="Enter phone number...">
+            <button id="addBtn">Add Contact</button>
+        </div>
+        <div id="contactList"></div>
     </div>
 
     <script src="script.js"></script>
