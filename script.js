@@ -109,7 +109,11 @@ function saveContacts() {
 // Display all contacts
 function displayContacts() {
     contactList.innerHTML = '';
-    contacts.forEach(function(contact, index) {
+    
+    // Reverse array to show newest first
+    const reversedContacts = contacts.slice().reverse();
+    
+    reversedContacts.forEach(function(contact, index) {
         const contactDiv = document.createElement('div');
         contactDiv.className = 'contact-item';
         
