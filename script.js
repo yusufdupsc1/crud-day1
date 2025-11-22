@@ -6,6 +6,7 @@ const toastContainer = document.getElementById('toastContainer');
 
 let contacts = [];
 let editingId = null;
+let isFirstLoad = true; // Track if it's the first time loading
 
 // Toast Notification System
 function showToast(type, title, message, actions) {
@@ -108,7 +109,7 @@ function saveContacts() {
 // Display all contacts
 function displayContacts() {
     contactList.innerHTML = '';
-    contacts.forEach(function(contact) {
+    contacts.forEach(function(contact, index) {
         const contactDiv = document.createElement('div');
         contactDiv.className = 'contact-item';
         
@@ -129,7 +130,19 @@ function displayContacts() {
             </div>
         `;
         contactList.appendChild(contactDiv);
+        
+        // Only animate on first load
+        if (isFirstLoad) {
+            setTimeout(function() {
+                contactDiv.classList.add('slide-in');
+            }, index * 100);
+        }
     });
+    
+    // After first load, disable animations
+    if (isFirstLoad) {
+        isFirstLoad = false;
+    }
 }
 
 // Add or update contact

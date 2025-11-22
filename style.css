@@ -122,12 +122,30 @@ button:active {
     border-radius: 18px;
     padding: 18px 20px;
     backdrop-filter: blur(6px);
+    /* Default visible state */
+    opacity: 1;
     transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+/* Animation only runs once when class is added */
+.contact-item.slide-in {
+    animation: slideDown 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .contact-item:hover {
     border-color: rgba(79, 70, 229, 0.35);
     transform: translateY(-2px);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .contact-info {
