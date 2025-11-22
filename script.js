@@ -111,10 +111,17 @@ function displayContacts() {
     contacts.forEach(function(contact) {
         const contactDiv = document.createElement('div');
         contactDiv.className = 'contact-item';
+        
+        // Get first letter of name for avatar
+        const firstLetter = contact.name.charAt(0).toUpperCase();
+        
         contactDiv.innerHTML = `
             <div class="contact-info">
-                <div class="contact-name">${contact.name}</div>
-                <div class="contact-number">${contact.number}</div>
+                <div class="contact-avatar">${firstLetter}</div>
+                <div class="contact-details">
+                    <div class="contact-name">${contact.name}</div>
+                    <div class="contact-number">${contact.number}</div>
+                </div>
             </div>
             <div class="contact-actions">
                 <button class="edit-btn" onclick="editContact(${contact.id})">Edit</button>
