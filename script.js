@@ -4,6 +4,8 @@ const addressInput = document.getElementById('addressInput');
 const addBtn = document.getElementById('addBtn');
 const contactList = document.getElementById('contactList');
 const toastContainer = document.getElementById('toastContainer');
+
+// Details Modal
 const modal = document.getElementById('contactModal');
 const closeModal = document.getElementById('closeModal');
 const modalAvatar = document.getElementById('modalAvatar');
@@ -11,11 +13,20 @@ const modalName = document.getElementById('modalName');
 const modalNumber = document.getElementById('modalNumber');
 const modalAddress = document.getElementById('modalAddress');
 
+// Edit Modal
+const editModal = document.getElementById('editModal');
+const closeEditModal = document.getElementById('closeEditModal');
+const editModalAvatar = document.getElementById('editModalAvatar');
+const editNameInput = document.getElementById('editNameInput');
+const editNumberInput = document.getElementById('editNumberInput');
+const editAddressInput = document.getElementById('editAddressInput');
+const saveEditBtn = document.getElementById('saveEditBtn');
+
 let contacts = [];
 let editingId = null;
 let isFirstLoad = true; // Track if it's the first time loading
 
-// Modal functions
+// Details Modal functions
 function openModal(id) {
     const contact = contacts.find(function(c) {
         return c.id === id;
@@ -43,6 +54,68 @@ modal.addEventListener('click', function(e) {
     if (e.target === modal) {
         closeModalFunc();
     }
+});
+
+// Edit Modal functions
+function openEditModal(id) {
+    const contact = contacts.find(function(c) {
+        return c.id === id;
+    });
+    
+    if (contact) {
+        const firstLetter = contact.name.charAt(0).toUpperCase();
+        editModalAvatar.textContent = firstLetter;
+        editNameInput.value = contact.name;
+        editNumberInput.value = contact.number;
+        editAddressInput.value = contact.address || '';
+        editingId = id;
+        editModal.classList.add('show');
+    }
+}
+
+function closeEditModalFunc() {
+    editModal.classList.remove('show');
+    editingId = null;
+}
+
+// Close edit modal on button click
+closeEditModal.addEventListener('click', closeEditModalFunc);
+
+// Close edit modal when clicking outside
+editModal.addEventListener('click', function(e) {
+    if (e.target === editModal) {
+        closeEditModalFunc();
+    }
+});
+
+// Save edited contact
+saveEditBtn.addEventListener('click', function() {
+    const name = editNameInput.value.trim();
+    const number = editNumberInput.value.trim();
+    const address = editAddressInput.value.trim();
+    
+    if (name === '' || number === '' || address === '') {
+        showToast('error', 'Error', 'Please enter name, number and address');
+        return;
+    }
+    
+    // Update contact
+    contacts = contacts.map(function(contact) {
+        if (contact.id === editingId) {
+            return {
+                id: editingId,
+                name: name,
+                number: number,
+                address: address
+            };
+        }
+        return contact;
+    });
+    
+    saveContacts();
+    displayContacts();
+    closeEditModalFunc();
+    showToast('success', 'Contact Updated', 'Contact updated successfully');
 });
 
 // Toast Notification System
@@ -187,7 +260,7 @@ function displayContacts() {
     }
 }
 
-// Add or update contact
+// Add contact
 addBtn.addEventListener('click', function() {
     const name = nameInput.value.trim();
     const number = numberInput.value.trim();
@@ -198,33 +271,15 @@ addBtn.addEventListener('click', function() {
         return;
     }
     
-    if (editingId === null) {
-        // Add new contact
-        const newContact = {
-            id: Date.now(),
-            name: name,
-            number: number,
-            address: address
-        };
-        contacts.push(newContact);
-        showToast('success', 'Contact Added', 'New contact added successfully');
-    } else {
-        // Update existing contact
-        contacts = contacts.map(function(contact) {
-            if (contact.id === editingId) {
-                return {
-                    id: editingId,
-                    name: name,
-                    number: number,
-                    address: address
-                };
-            }
-            return contact;
-        });
-        editingId = null;
-        addBtn.textContent = 'Add Contact';
-        showToast('success', 'Contact Updated', 'Contact updated successfully');
-    }
+    // Add new contact
+    const newContact = {
+        id: Date.now(),
+        name: name,
+        number: number,
+        address: address
+    };
+    contacts.push(newContact);
+    showToast('success', 'Contact Added', 'New contact added successfully');
     
     saveContacts();
     displayContacts();
@@ -233,19 +288,9 @@ addBtn.addEventListener('click', function() {
     addressInput.value = '';
 });
 
-// Edit contact
+// Edit contact - now opens modal
 function editContact(id) {
-    const contact = contacts.find(function(c) {
-        return c.id === id;
-    });
-    
-    if (contact) {
-        nameInput.value = contact.name;
-        numberInput.value = contact.number;
-        addressInput.value = contact.address || '';
-        editingId = id;
-        addBtn.textContent = 'Update Contact';
-    }
+    openEditModal(id);
 }
 
 // Delete contact

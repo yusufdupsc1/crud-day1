@@ -13,7 +13,7 @@
     <!-- Toast Container -->
     <div id="toastContainer"></div>
 
-    <!-- Modal -->
+    <!-- Details Modal -->
     <div id="contactModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -31,6 +31,31 @@
                     
                     <div class="modal-label">Address</div>
                     <div class="modal-value" id="modalAddress"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Contact</h2>
+                <button id="closeEditModal" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-avatar" id="editModalAvatar"></div>
+                <div class="modal-form">
+                    <div class="modal-label">Name</div>
+                    <input type="text" id="editNameInput" class="modal-input" placeholder="Enter name...">
+                    
+                    <div class="modal-label">Phone Number</div>
+                    <input type="text" id="editNumberInput" class="modal-input" placeholder="Enter phone number...">
+                    
+                    <div class="modal-label">Address</div>
+                    <input type="text" id="editAddressInput" class="modal-input" placeholder="Enter address...">
+                    
+                    <button id="saveEditBtn" class="modal-save-btn">Save Changes</button>
                 </div>
             </div>
         </div>
