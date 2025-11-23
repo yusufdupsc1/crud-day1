@@ -59,12 +59,23 @@ h1 {
     margin-bottom: 30px;
 }
 
-.form input {
+.input-wrapper {
     flex: 1 1 220px;
+    position: relative;
 }
 
-.form .full-width {
+.input-wrapper.full-width {
     flex: 1 1 100%;
+}
+
+.input-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    font-size: 0.9rem;
+    pointer-events: none;
 }
 
 input {
@@ -72,9 +83,10 @@ input {
     border: 1px solid var(--border);
     border-radius: 12px;
     color: var(--text);
-    padding: 12px 16px;
+    padding: 12px 16px 12px 44px;
     font-size: 0.95rem;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
 }
 
 input::placeholder {
@@ -474,25 +486,55 @@ button:active {
 .modal-info {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
 }
 
-.modal-label {
-    font-size: 0.8rem;
+.info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    transition: background 0.2s ease;
+}
+
+.info-row:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.info-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(132, 127, 228, 0.15);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-size: 1rem;
+    flex-shrink: 0;
+    margin-top: 4px;
+}
+
+.info-content {
+    flex: 1;
+}
+
+.info-label {
+    font-size: 0.75rem;
     color: var(--muted);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     font-weight: 500;
+    margin-bottom: 6px;
 }
 
-.modal-value {
-    font-size: 1.05rem;
+.info-text {
+    font-size: 1.1rem;
     color: var(--text);
-    margin-top: 4px;
-    padding: 12px 16px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--border);
-    border-radius: 12px;
+    font-weight: 500;
+    word-break: break-word;
 }
 
 .modal-form {
@@ -501,15 +543,30 @@ button:active {
     gap: 16px;
 }
 
+.modal-input-wrapper {
+    position: relative;
+    margin-top: 4px;
+}
+
+.modal-input-wrapper .input-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    font-size: 0.9rem;
+    pointer-events: none;
+}
+
 .modal-input {
     font-size: 1rem;
     color: var(--text);
-    margin-top: 4px;
-    padding: 12px 16px;
+    padding: 12px 16px 12px 44px;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--border);
     border-radius: 12px;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
 }
 
 .modal-input::placeholder {

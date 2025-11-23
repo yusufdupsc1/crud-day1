@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -24,14 +25,29 @@
             <div class="modal-body">
                 <div class="modal-avatar" id="modalAvatar"></div>
                 <div class="modal-info">
-                    <div class="modal-label">Name</div>
-                    <div class="modal-value" id="modalName"></div>
+                    <div class="info-row">
+                        <i class="fa-solid fa-user info-icon"></i>
+                        <div class="info-content">
+                            <div class="info-label">Name</div>
+                            <div class="info-text" id="modalName"></div>
+                        </div>
+                    </div>
                     
-                    <div class="modal-label">Phone Number</div>
-                    <div class="modal-value" id="modalNumber"></div>
+                    <div class="info-row">
+                        <i class="fa-solid fa-phone info-icon"></i>
+                        <div class="info-content">
+                            <div class="info-label">Phone Number</div>
+                            <div class="info-text" id="modalNumber"></div>
+                        </div>
+                    </div>
                     
-                    <div class="modal-label">Address</div>
-                    <div class="modal-value" id="modalAddress"></div>
+                    <div class="info-row">
+                        <i class="fa-solid fa-location-dot info-icon"></i>
+                        <div class="info-content">
+                            <div class="info-label">Address</div>
+                            <div class="info-text" id="modalAddress"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -48,13 +64,22 @@
                 <div class="modal-avatar" id="editModalAvatar"></div>
                 <div class="modal-form">
                     <div class="modal-label">Name</div>
-                    <input type="text" id="editNameInput" class="modal-input" placeholder="Enter name...">
+                    <div class="modal-input-wrapper">
+                        <i class="fa-solid fa-user input-icon"></i>
+                        <input type="text" id="editNameInput" class="modal-input" placeholder="Enter name...">
+                    </div>
                     
                     <div class="modal-label">Phone Number</div>
-                    <input type="text" id="editNumberInput" class="modal-input" placeholder="Enter phone number...">
+                    <div class="modal-input-wrapper">
+                        <i class="fa-solid fa-phone input-icon"></i>
+                        <input type="text" id="editNumberInput" class="modal-input" placeholder="Enter phone number...">
+                    </div>
                     
                     <div class="modal-label">Address</div>
-                    <input type="text" id="editAddressInput" class="modal-input" placeholder="Enter address...">
+                    <div class="modal-input-wrapper">
+                        <i class="fa-solid fa-location-dot input-icon"></i>
+                        <input type="text" id="editAddressInput" class="modal-input" placeholder="Enter address...">
+                    </div>
                     
                     <button id="saveEditBtn" class="modal-save-btn">Save Changes</button>
                 </div>
@@ -66,9 +91,18 @@
         <h1>Contact Book</h1>
         <p class="subtitle">Keep your connections organized and accessible</p>
         <div class="form">
-            <input type="text" id="nameInput" placeholder="Enter name...">
-            <input type="text" id="numberInput" placeholder="Enter phone number...">
-            <input type="text" id="addressInput" class="full-width" placeholder="Enter address...">
+            <div class="input-wrapper">
+                <i class="fa-solid fa-user input-icon"></i>
+                <input type="text" id="nameInput" placeholder="Enter name...">
+            </div>
+            <div class="input-wrapper">
+                <i class="fa-solid fa-phone input-icon"></i>
+                <input type="text" id="numberInput" placeholder="Enter phone number...">
+            </div>
+            <div class="input-wrapper full-width">
+                <i class="fa-solid fa-location-dot input-icon"></i>
+                <input type="text" id="addressInput" placeholder="Enter address...">
+            </div>
             <button id="addBtn" class="full-width">Add Contact</button>
         </div>
         <div id="contactList"></div>
