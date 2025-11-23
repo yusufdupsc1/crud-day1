@@ -236,7 +236,6 @@ function displayContacts() {
                 <div class="contact-details">
                     <div class="contact-name">${contact.name}</div>
                     <div class="contact-number">${contact.number}</div>
-                    <div class="contact-address">${contact.address || ''}</div>
                 </div>
             </div>
             <div class="contact-actions">
