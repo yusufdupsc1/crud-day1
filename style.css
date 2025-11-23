@@ -63,6 +63,10 @@ h1 {
     flex: 1 1 220px;
 }
 
+.form .full-width {
+    flex: 1 1 100%;
+}
+
 input {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--border);
@@ -100,7 +104,6 @@ button:active {
 #addBtn {
     background: linear-gradient(135deg, var(--accent), var(--accent-light));
     color: #fff;
-    flex: 1 1 130px;
 }
 
 #addBtn:hover {
@@ -183,6 +186,12 @@ button:active {
 .contact-number {
     color: var(--muted);
     font-size: 0.9rem;
+}
+
+.contact-address {
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 2px;
 }
 
 .contact-actions {

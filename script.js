@@ -1,5 +1,6 @@
 const nameInput = document.getElementById('nameInput');
 const numberInput = document.getElementById('numberInput');
+const addressInput = document.getElementById('addressInput');
 const addBtn = document.getElementById('addBtn');
 const contactList = document.getElementById('contactList');
 const toastContainer = document.getElementById('toastContainer');
@@ -126,6 +127,7 @@ function displayContacts() {
                 <div class="contact-details">
                     <div class="contact-name">${contact.name}</div>
                     <div class="contact-number">${contact.number}</div>
+                    <div class="contact-address">${contact.address || ''}</div>
                 </div>
             </div>
             <div class="contact-actions">
@@ -153,9 +155,10 @@ function displayContacts() {
 addBtn.addEventListener('click', function() {
     const name = nameInput.value.trim();
     const number = numberInput.value.trim();
+    const address = addressInput.value.trim();
     
-    if (name === '' || number === '') {
-        showToast('error', 'Error', 'Please enter both name and number');
+    if (name === '' || number === '' || address === '') {
+        showToast('error', 'Error', 'Please enter name, number and address');
         return;
     }
     
@@ -164,7 +167,8 @@ addBtn.addEventListener('click', function() {
         const newContact = {
             id: Date.now(),
             name: name,
-            number: number
+            number: number,
+            address: address
         };
         contacts.push(newContact);
         showToast('success', 'Contact Added', 'New contact added successfully');
@@ -175,7 +179,8 @@ addBtn.addEventListener('click', function() {
                 return {
                     id: editingId,
                     name: name,
-                    number: number
+                    number: number,
+                    address: address
                 };
             }
             return contact;
@@ -189,6 +194,7 @@ addBtn.addEventListener('click', function() {
     displayContacts();
     nameInput.value = '';
     numberInput.value = '';
+    addressInput.value = '';
 });
 
 // Edit contact
@@ -200,6 +206,7 @@ function editContact(id) {
     if (contact) {
         nameInput.value = contact.name;
         numberInput.value = contact.number;
+        addressInput.value = contact.address || '';
         editingId = id;
         addBtn.textContent = 'Update Contact';
     }
