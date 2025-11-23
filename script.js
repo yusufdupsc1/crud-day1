@@ -4,10 +4,46 @@ const addressInput = document.getElementById('addressInput');
 const addBtn = document.getElementById('addBtn');
 const contactList = document.getElementById('contactList');
 const toastContainer = document.getElementById('toastContainer');
+const modal = document.getElementById('contactModal');
+const closeModal = document.getElementById('closeModal');
+const modalAvatar = document.getElementById('modalAvatar');
+const modalName = document.getElementById('modalName');
+const modalNumber = document.getElementById('modalNumber');
+const modalAddress = document.getElementById('modalAddress');
 
 let contacts = [];
 let editingId = null;
 let isFirstLoad = true; // Track if it's the first time loading
+
+// Modal functions
+function openModal(id) {
+    const contact = contacts.find(function(c) {
+        return c.id === id;
+    });
+    
+    if (contact) {
+        const firstLetter = contact.name.charAt(0).toUpperCase();
+        modalAvatar.textContent = firstLetter;
+        modalName.textContent = contact.name;
+        modalNumber.textContent = contact.number;
+        modalAddress.textContent = contact.address || 'No address added';
+        modal.classList.add('show');
+    }
+}
+
+function closeModalFunc() {
+    modal.classList.remove('show');
+}
+
+// Close modal on button click
+closeModal.addEventListener('click', closeModalFunc);
+
+// Close modal when clicking outside
+modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+        closeModalFunc();
+    }
+});
 
 // Toast Notification System
 function showToast(type, title, message, actions) {
@@ -122,7 +158,7 @@ function displayContacts() {
         const firstLetter = contact.name.charAt(0).toUpperCase();
         
         contactDiv.innerHTML = `
-            <div class="contact-info">
+            <div class="contact-info" onclick="openModal(${contact.id})">
                 <div class="contact-avatar">${firstLetter}</div>
                 <div class="contact-details">
                     <div class="contact-name">${contact.name}</div>
